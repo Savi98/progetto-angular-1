@@ -21,7 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     RouterModule
   ],
   providers: [
-    {provide : LocationStrategy , useClass : HashLocationStrategy }
+    {provide : LocationStrategy , useClass : PathLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })
