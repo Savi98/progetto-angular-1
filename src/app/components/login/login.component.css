@@ -1,0 +1,21 @@
+.main-div{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius:100%;
+}
+
+mat-card {
+  text-align: center;
+  border: solid;
+}
+
+mat-form-field {
+  display: block;
+}
+
+form > button {
+  background-color: black;
+  color: white;
+}

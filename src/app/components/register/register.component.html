@@ -1,0 +1,29 @@
+<div class="main-div">
+  <mat-card>
+    <mat-card-content>
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+        <h2>SIGNUP</h2>
+        <mat-error *ngIf="!loginValid">
+          The email and token were not recognized
+        </mat-error>
+        <mat-form-field>
+          <input matInput placeholder="Email" [(ngModel)]="username" name="email" required>
+          <mat-error>
+            Please provide a valid email address
+          </mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+          <input matInput type="password" placeholder="Token" [(ngModel)]="token" name="token" required>
+          <mat-error>
+            Please provide a valid token
+          </mat-error>
+        </mat-form-field><br>
+        <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Signup</button>
+
+        <p>Back to <a routerLink="/login">Login</a></p>
+        <p>Don't have a token? Click <a href="https://gorest.co.in/consumer/login" target="_blank">Here</a></p>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+  </div>
