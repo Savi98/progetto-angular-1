@@ -11,7 +11,13 @@ export class AuthService {
 
   constructor(private http : HttpClient) {}
 
+  login(token : string){
+    localStorage.setItem('token',token);
+  }
 
+  logout(){
+    localStorage.removeItem('token');
+  }
 
 
 }
