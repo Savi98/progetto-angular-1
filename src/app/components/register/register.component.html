@@ -1,26 +1,51 @@
 <div class="main-div">
   <mat-card>
     <mat-card-content>
-      <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <h2>SIGNUP</h2>
-        <mat-error *ngIf="!loginValid">
-          The email and token were not recognized
-        </mat-error>
-        <mat-form-field>
-          <input matInput placeholder="Email" [(ngModel)]="username" name="email" required>
-          <mat-error>
-            Please provide a valid email address
-          </mat-error>
-        </mat-form-field><br>
-        <mat-form-field>
-          <input matInput type="password" placeholder="Token" [(ngModel)]="token" name="token" required>
-          <mat-error>
-            Please provide a valid token
-          </mat-error>
-        </mat-form-field><br>
-        <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Signup</button>
 
-        <p>Back to <a routerLink="/login">Login</a></p>
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" required>
+          <mat-error>
+            Name is mandatory
+          </mat-error>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" required>
+          <mat-error>
+            Email is mandatory
+          </mat-error>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field>
+          <mat-label>Gender</mat-label>
+          <mat-select formControlName="gender" required>
+            <mat-option value="male">Male</mat-option>
+            <mat-option value="female">Female</mat-option>
+          </mat-select>
+          <mat-error>
+            Gender is mandatory
+          </mat-error>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field>
+          <mat-label>Token</mat-label>
+          <input matInput formControlName="token" required>
+          <mat-error>
+            Token is mandatory
+          </mat-error>
+        </mat-form-field>
+        <br>
+
+        <button mat-raised-button color="primary" [disabled]="!registerForm.valid">Signup</button><br><br>
+
+        <p>Back to <a routerLink="/login">Login</a></p><br>
         <p>Don't have a token? Click <a href="https://gorest.co.in/consumer/login" target="_blank">Here</a></p>
 
       </form>
