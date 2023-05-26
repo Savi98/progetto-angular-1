@@ -9,6 +9,8 @@ export class AuthService {
 
   user! : User;
 
+  usersUlr = 'https://gorest.co.in/public/v2/users';
+
   constructor(private http : HttpClient) {}
 
   login(token : string){

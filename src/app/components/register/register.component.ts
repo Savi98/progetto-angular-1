@@ -14,7 +14,6 @@ export class RegisterComponent implements OnInit{
 
   registerForm!: FormGroup;
 
-  usersUlr = 'https://gorest.co.in/public/v2/users';
 
   constructor(private router:Router, private authService : AuthService, private http:HttpClient){}
 
@@ -33,7 +32,7 @@ export class RegisterComponent implements OnInit{
     });
 
     this.http.post<User>
-    (`${this.usersUlr}`,
+    (`${this.authService.usersUlr}`,
       {
         name: this.registerForm.value.name,
         email: this.registerForm.value.email,
@@ -47,9 +46,11 @@ export class RegisterComponent implements OnInit{
             },
       error : (err) => {
                  if(err.status == 401){
-                   console.log('token is not valid');
+                  window.alert("Token is not valid!");
+                  this.registerForm.reset();
                  } else if (err.status == 422) {
-                   console.log('existing user');
+                  window.alert("Existing user!");
+                  this.router.navigate(['/login']);
                  }
                }
     });
