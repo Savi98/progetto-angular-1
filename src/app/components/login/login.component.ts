@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit{
 
   loginForm!: FormGroup;
 
+  public loginValid = true;
+
   constructor(private router:Router, private authService : AuthService, private http:HttpClient){}
 
   ngOnInit(): void {
@@ -22,9 +24,6 @@ export class LoginComponent implements OnInit{
       token: new FormControl('',[Validators.minLength(64)]),
     });
   }
-
-  public loginValid = true;
-
 
   public onSubmit(): void {
 
