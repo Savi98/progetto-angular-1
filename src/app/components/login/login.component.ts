@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user/user.model';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -33,27 +33,31 @@ export class LoginComponent implements OnInit{
 
     const email = this.loginForm.value.email;
     const token = this.loginForm.value.token;
-    this.http.get<User[]>(`${this.authService.usersUlr}`,{headers})
-    .subscribe({
-      next : (res)=> {
-      const user = res.find((a:any)=>{
-        return a.email === email;
-      });
-        if(user){
-          alert('Login Succesful');
-          this.authService.login(token);
-          this.loginForm.reset();
-          this.loginValid = true;
+    this.authService.login(token);
+           this.loginForm.reset();
+           this.loginValid = true;
           this.router.navigate(["home"])
-        }
-    },
-      error : (err) => {
-          if(err.status == 401){
-          alert("Token is not valid!");
-          this.loginForm.reset();
-          }
-        }
-    });
+    // this.http.get<User[]>(`${this.authService.usersUlr}`,{headers})
+    // .subscribe({
+    //   next : (res)=> {
+    //     const user = res.find((a:any)=>{
+    //     return a.email === email;
+    //   });
+    //     if(user){
+    //       alert('Login Succesful');
+    //       this.authService.login(token);
+    //       this.loginForm.reset();
+    //       this.loginValid = true;
+    //       this.router.navigate(["home"])
+    //     }
+    // },
+    //   error : (err) => {
+    //       if(err.status == 401){
+    //       alert("Token is not valid!");
+    //       this.loginForm.reset();
+    //       }
+    //     }
+    // });
   }
 
 }
