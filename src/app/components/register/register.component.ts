@@ -41,7 +41,6 @@ export class RegisterComponent implements OnInit{
       },{headers}
     ).subscribe({
       next : (res) => {
-          console.log('HTTP response', res),
           this.router.navigate(['/login']);
             },
       error : (err) => {

@@ -1,12 +1,13 @@
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user/user.model';
-import { AuthService } from 'src/app/services/auth/auth.service';
 import { UsersService } from 'src/app/services/users/users.service';
 import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import {MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
+import {MatDialog} from '@angular/material/dialog';
+import { AddUserComponent } from '../add-user/add-user.component';
 
 @Component({
   selector: 'app-users',
@@ -17,18 +18,33 @@ export class UsersComponent implements OnInit{
 
   users: User[] = [];
 
+  allUsers! : User[] | null;
+
   myControl = new FormControl<string | User>('');
 
   filteredOptions!: Observable<User[]>;
 
   columnNum = 1;
 
-  constructor(private router:Router, private userService : UsersService, private authService : AuthService, private http:HttpClient){}
+  length! : string | null | number;
+
+  pageIndex: number = 1;
+
+  pageSize: number = 10;
+
+  pageSizeOptions = [10,25,50];
+
+  pageEvent!: PageEvent;
+
+  constructor(private router:Router, private userService : UsersService, public _MatPaginatorIntl: MatPaginatorIntl,
+              public dialog: MatDialog){}
 
   ngOnInit() {
     this.userService.getUser().subscribe((res : User []) => {
       this.users = res;
     });
+
+    this.getUsers(this.pageIndex, this.pageSize);
 
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
@@ -45,19 +61,43 @@ export class UsersComponent implements OnInit{
 
   private _filter(name: string): User[] {
     const filterValue = name.toLowerCase();
+
     return this.users.filter(user => user.name.toLowerCase().includes(filterValue));
+  }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(AddUserComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 
   onSearch() {
 
   }
 
-  onViewList(){
-    this.columnNum = 2;
+  getUsers(pageIndex : number, pageSize : number) {
+    this.userService.getUsers(pageIndex, pageSize).subscribe({
+      next : (res) => {
+        this.length = res.headers.get('x-pagination-total');
+        this.allUsers = res.body;
+      },
+      error : (err) => {
+
+      }
+    });
   }
 
-  onViewModule() {
-    this.columnNum = 3;
+  handlePageEvent(e: PageEvent) {
+    this.pageEvent = e;
+    this.length = e.length;
+    this.pageSize = e.pageSize;
+    this.pageIndex = e.pageIndex;
+  }
+
+  updateUser(e : any) {
+    this.users = this.users?.filter((user) => user.id !== e);
   }
 
   onRemove(){

@@ -33,31 +33,27 @@ export class LoginComponent implements OnInit{
 
     const email = this.loginForm.value.email;
     const token = this.loginForm.value.token;
-    this.authService.login(token);
-           this.loginForm.reset();
-           this.loginValid = true;
+    this.http.get<User[]>(`${this.authService.usersUlr}`,{headers})
+    .subscribe({
+      next : (res)=> {
+        const user = res.find((a:any)=>{
+        return a.email === email;
+      });
+        if(user){
+          alert('Login Succesful');
+          this.authService.login(token);
+          this.loginForm.reset();
+          this.loginValid = true;
           this.router.navigate(["home"])
-    // this.http.get<User[]>(`${this.authService.usersUlr}`,{headers})
-    // .subscribe({
-    //   next : (res)=> {
-    //     const user = res.find((a:any)=>{
-    //     return a.email === email;
-    //   });
-    //     if(user){
-    //       alert('Login Succesful');
-    //       this.authService.login(token);
-    //       this.loginForm.reset();
-    //       this.loginValid = true;
-    //       this.router.navigate(["home"])
-    //     }
-    // },
-    //   error : (err) => {
-    //       if(err.status == 401){
-    //       alert("Token is not valid!");
-    //       this.loginForm.reset();
-    //       }
-    //     }
-    // });
+        }
+    },
+      error : (err) => {
+          if(err.status == 401){
+          alert("Token is not valid!");
+          this.loginForm.reset();
+          }
+        }
+    });
   }
 
 }

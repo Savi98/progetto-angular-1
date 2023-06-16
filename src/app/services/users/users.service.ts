@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from 'src/app/models/user/user.model';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { NewUser, User } from 'src/app/models/user/user.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -17,6 +17,20 @@ export class UsersService {
     });
 
     return this.http.get<User[]>(`${this.authService.usersUlr}`,{headers});
+  }
+
+  getUsers(page: number, perPage: number): Observable<HttpResponse<User[]>> {
+    return this.http.get<User[]>(`${this.authService.usersUlr}?page=${page}&per_page=${perPage}`, {
+        observe: 'response',
+      })
+  }
+
+  newUser(user: NewUser): Observable<User> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    });
+
+    return this.http.post<User>(`${this.authService.usersUlr}`, user , {headers});
   }
 
 }

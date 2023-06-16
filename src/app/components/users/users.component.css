@@ -1,3 +1,13 @@
+.add-user {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.add-user > button {
+  background-color: black;
+}
+
 .view-users {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -10,68 +20,57 @@
   flex-direction: column;
 }
 
-mat-form-field {
+.list-users {
+  width: 70%;
+  margin: auto;
 }
 
-.button-view {
+mat-grid-list {
   display: flex;
-  justify-content: end;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-@media (max-width: 500px) {
-  .button-view {
-    display: none;
+mat-card-header {
+  margin: 10px;
+}
+
+@media (max-width: 440px) {
+  mat-card-header {
+    word-wrap: break-word;
   }
-}
-
-.button-view > button {
-  height: 50px;
 }
 
 mat-card {
   margin-bottom: 10px;
 }
 
-@media (max-width: 500px) {
-  mat-card {
-
-  }
-}
-
-mat-grid-list {
-
-}
-
-@media (max-width: 500px) {
-  mat-grid-list {
-
-  }
-}
-
 mat-grid-tile {
   background: #f5f5f5;
+  border-radius: 5px;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 440px) {
   mat-grid-tile {
     display: grid;
   }
 }
 
 .conteiner {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   width: 100%;
   margin: 40px;
 }
 
-@media (max-width: 500px) {
-  mat-card-header {
-    width: 50% !important;
+@media (max-width: 440px) {
+  .conteiner {
+    margin: 0px;
+    grid-template-columns: 1fr;
   }
 }
 
-mat-icon , .mat-card-avatar {
+mat-icon , .mat-card-avatar{
   width: 40px;
   height: 40px;
   font-size: 40px;
@@ -86,6 +85,46 @@ mat-icon , .mat-card-avatar {
   width: 100%;
 }
 
+@media (max-width: 440px) {
+  mat-card-title {
+    font-size: small;
+  }
+}
+
+@media (max-width: 440px) {
+  mat-card-subtitle {
+    word-wrap: break-word;
+    width: 80%;
+  }
+}
+
+mat-card-content {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+@media (max-width: 440px) {
+  mat-card-content {
+    justify-content: center;
+  }
+}
+
 .remove {
   border: solid;
+}
+
+mat-paginator {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+}
+
+.mat-mdc-paginator-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 8px;
+  flex-wrap: wrap-reverse;
+  width: 100%;
 }
