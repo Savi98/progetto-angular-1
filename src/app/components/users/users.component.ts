@@ -19,21 +19,16 @@ import { MatTableDataSource } from '@angular/material/table';
 export class UsersComponent implements OnInit{
 
   users: User[] = [];
-
   allUsers!: User[] | null;
 
   myControl = new FormControl<string | User>('');
-
   filteredOptions!: Observable<User[]>;
 
   columnNum = 1;
 
   length !: string | null;
-
   pageIndex = 0;
-
   pageSize = 10;
-
   pageSizeOptions : number [] = [10,25,50];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -76,10 +71,6 @@ export class UsersComponent implements OnInit{
     });
   }
 
-  onSearch() {
-
-  }
-
   loadUsers(pageIndex: number, pageSize: number) {
     this.userService.getUsers(pageIndex, pageSize)
       .subscribe(result => {
@@ -94,8 +85,14 @@ export class UsersComponent implements OnInit{
     this.loadUsers(this.pageIndex, this.pageSize);
   }
 
-  onRemove(){
-
+  onRemoveUser(id : number) {
+    this.userService.removeUser(id).subscribe({
+      next : (res) => {
+        window.alert("User deleted!");
+        this.loadUsers(this.pageIndex, this.pageSize);
+      },
+      error : (err) => {
+      }
+    });
   }
-
 }

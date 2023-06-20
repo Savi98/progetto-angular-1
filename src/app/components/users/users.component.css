@@ -21,8 +21,8 @@
 }
 
 .list-users {
-  width: 70%;
-  margin: auto;
+  display: grid;
+  grid-template-columns: 0.5fr 2fr 0.5fr;
 }
 
 mat-grid-list {
@@ -37,7 +37,15 @@ mat-card-header {
 
 @media (max-width: 440px) {
   mat-card-header {
-    word-wrap: break-word;
+    display: grid;
+    margin: auto;
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 440px) {
+  .user-icon {
+    padding-top: 10px;
   }
 }
 

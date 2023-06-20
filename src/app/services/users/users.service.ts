@@ -15,7 +15,6 @@ export class UsersService {
     const headers = new HttpHeaders({
       Authorization: `Bearer `
     });
-
     return this.http.get<User[]>(`${this.authService.usersUlr}`,{headers});
   }
 
@@ -30,8 +29,14 @@ export class UsersService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${localStorage.getItem('token')}`
     });
-
     return this.http.post<User>(`${this.authService.usersUlr}`, user , {headers});
+  }
+
+  removeUser(id : number){
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.delete(`${this.authService.usersUlr}/${id}` , {headers});
   }
 
 }
