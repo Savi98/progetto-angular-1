@@ -27,7 +27,7 @@
 
   <div class="list-users">
     <mat-grid-list [cols]="columnNum" rowHeight="150px" gutterSize="15px">
-      <mat-grid-tile *ngFor="let user of allUsers" (updateUser)="updateUser($event)">
+      <mat-grid-tile *ngFor="let user of allUsers">
         <div class="conteiner">
           <mat-card-header>
             <mat-icon mat-card-avatar>account_circle</mat-icon>
@@ -47,13 +47,13 @@
         </div>
       </mat-grid-tile>
     </mat-grid-list>
+
   </div>
 
   <mat-paginator
-              [length]="length"
-              [pageIndex]="pageIndex"
-              [pageSize]="pageSize"
-              [pageSizeOptions]="pageSizeOptions"
-              aria-label="Select page">
-              (page)="handlePageEvent($event)"
-  </mat-paginator>
+                [length]="length"
+                [pageIndex]="pageIndex"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="pageSizeOptions"
+                (page)="onPageChange($event)">
+</mat-paginator>

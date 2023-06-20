@@ -19,10 +19,11 @@ export class UsersService {
     return this.http.get<User[]>(`${this.authService.usersUlr}`,{headers});
   }
 
-  getUsers(page: number, perPage: number): Observable<HttpResponse<User[]>> {
-    return this.http.get<User[]>(`${this.authService.usersUlr}?page=${page}&per_page=${perPage}`, {
-        observe: 'response',
-      })
+  getUsers(pageIndex: number, pageSize: number): Observable<HttpResponse<User[]>> {
+    const startIndex = pageIndex * pageSize;
+    return this.http.get<User[]>(`${this.authService.usersUlr}?page=${startIndex}&per_page=${pageSize}`, {
+      observe: 'response',
+    })
   }
 
   newUser(user: NewUser): Observable<User> {
