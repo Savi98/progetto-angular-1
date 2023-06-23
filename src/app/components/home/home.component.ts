@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class HomeComponent {
 
-  constructor(private router:Router, private authService : AuthService){}
+  constructor(public router:Router, public authService : AuthService){}
 
   onLogout(){
     this.authService.logout();

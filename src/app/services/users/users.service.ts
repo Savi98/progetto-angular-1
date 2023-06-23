@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { NewUser, User } from 'src/app/models/user/user.model';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +12,7 @@ export class UsersService {
   constructor(private http:HttpClient, private authService : AuthService) { }
 
   getUser() : Observable<User[]>{
-    const headers = new HttpHeaders({
-      Authorization: `Bearer `
-    });
-    return this.http.get<User[]>(`${this.authService.usersUlr}`,{headers});
+    return this.http.get<User[]>(`${this.authService.usersUlr}`);
   }
 
   getUsers(pageIndex: number, pageSize: number): Observable<HttpResponse<User[]>> {
@@ -38,5 +35,17 @@ export class UsersService {
     });
     return this.http.delete(`${this.authService.usersUlr}/${id}` , {headers});
   }
+
+  getProfileUser(id : number | string){
+    return this.getUser().pipe(
+      map((users: User[]) => users.find(user => user.id === +id)!)
+    );
+  }
+
+  // getData(page: number, pageSize: number) : Observable<HttpResponse<User[]>>{
+  //   return this.http.get<User[]>(`${this.authService.usersUlr}?page=${page}&per_page=${pageSize}` , {
+  //     observe : 'response'
+  //   });
+  // }
 
 }
