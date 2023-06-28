@@ -6,7 +6,7 @@ import { ProfileUserComponent } from './profile-user.component';
 
 
 @NgModule({
-  declarations: [ProfileUserComponent],
+  declarations: [],
   imports: [
     CommonModule,
     ProfileUserRoutingModule

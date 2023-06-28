@@ -1,8 +1,8 @@
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user/user.model';
 import { UsersService } from 'src/app/services/users/users.service';
-import {Component, OnInit} from '@angular/core';
-import {MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator, MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
 import {MatDialog} from '@angular/material/dialog';
 import { AddUserComponent } from '../add-user/add-user.component';
 import {MatTableDataSource } from '@angular/material/table';
@@ -23,7 +23,6 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 
 export class UsersComponent implements OnInit{
 
-  users: User[] = [];
   allUsers!: User[] | null;
 
   length !: string | null;
@@ -36,11 +35,14 @@ export class UsersComponent implements OnInit{
   expandedElement!: User | null;
   dataSource!: MatTableDataSource<User>;
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   constructor(private router:Router, private userService : UsersService, public _MatPaginatorIntl: MatPaginatorIntl,
               public dialog: MatDialog){}
 
   ngOnInit() {
     this.loadUsers(this.pageIndex, this.pageSize);
+    this._MatPaginatorIntl.itemsPerPageLabel = 'Users per page';
   }
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
@@ -81,4 +83,5 @@ export class UsersComponent implements OnInit{
       }
     });
   }
+
 }
