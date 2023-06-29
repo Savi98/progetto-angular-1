@@ -1,0 +1,12 @@
+.mat-toolbar-single-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 10%;
+  place-items: center;
+}
+
+.mat-icon , .mat-card-avatar{
+  font-size: 35px;
+  height: 35px ;
+  width: 35px;
+}

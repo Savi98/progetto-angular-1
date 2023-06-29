@@ -3,13 +3,28 @@ import { CommonModule } from '@angular/common';
 
 import { ProfileUserRoutingModule } from './profile-user-routing.module';
 import { ProfileUserComponent } from './profile-user.component';
+import { ToolbarComponent } from '../toolbar/toolbar.component';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {MatTableModule} from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
-  declarations: [],
+  declarations: [ProfileUserComponent, ToolbarComponent],
   imports: [
     CommonModule,
-    ProfileUserRoutingModule
+    ProfileUserRoutingModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatListModule,
+    MatTableModule,
+    MatFormFieldModule
   ]
 })
 export class ProfileUserModule { }

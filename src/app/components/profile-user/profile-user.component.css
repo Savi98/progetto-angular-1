@@ -1,0 +1,135 @@
+.info-user {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+  margin: 10px 10px 0 10px;
+}
+
+.name-user {
+  display: flex;
+}
+
+.name-user > h1{
+  font-size: 50px;
+  line-height: 50px;
+}
+
+.circle-offline, .circle-online {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.circle-online {
+  background-color: green;
+}
+
+.img-user {
+  width: 150px;
+}
+
+/* TABLE */
+
+
+.mat-mdc-icon-button.mat-mdc-button-base {
+  float: right;
+}
+
+.table-container {
+  /* height: 350px; */
+  width: 90%;
+  margin: auto;
+  overflow: auto;
+}
+
+/* @media (max-width: 300px) and (max-height: 750px) {
+  .table-container {
+    height: 300px;
+    width: 100%;
+  }
+}
+
+@media (min-width: 301px) and (max-width: 950px) and (max-height: 750px) {
+  .table-container {
+    height: 300px;
+  }
+}
+
+@media (min-width: 301px) and (max-width: 950px) and (min-height: 751px) and (max-height: 950px) {
+  .table-container {
+    height: 500px;
+  }
+}
+
+@media (min-width: 301px) and (max-width: 950px) and (min-height: 751px) and (max-height: 1100px) {
+  .table-container {
+    height: 500px;
+  }
+}
+
+@media (min-width: 301px) and (max-width: 950px) and (min-height: 1101px) {
+  .table-container {
+    height: 800px;
+  }
+}
+
+@media (min-width: 951px) and (min-height: 600px) and (max-height: 699px) {
+  .table-container {
+    height: 250px;
+  }
+}
+
+@media (min-width: 951px) and (min-height: 1102px) {
+  .table-container {
+    height: 800px;
+  }
+} */
+
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}

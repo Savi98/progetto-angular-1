@@ -1,8 +1,8 @@
-import { EventEmitter, Injectable, forwardRef, Inject } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { NewUser, User } from 'src/app/models/user/user.model';
-import { Observable, Subject, Subscription, map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

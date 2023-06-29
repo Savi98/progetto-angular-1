@@ -17,12 +17,11 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ProfileUserComponent } from '../profile-user/profile-user.component';
 import { UsersService } from 'src/app/services/users/users.service';
 
 
 @NgModule({
-  declarations: [HomeComponent, UsersComponent, ProfileUserComponent],
+  declarations: [HomeComponent, UsersComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
