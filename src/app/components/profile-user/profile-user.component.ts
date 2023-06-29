@@ -1,12 +1,14 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
+import { CommentComponent } from 'src/app/comment/comment.component';
 import { Post } from 'src/app/models/post/post.model';
 import { User } from 'src/app/models/user/user.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { PostsService } from 'src/app/services/posts.service';
+import { PostsService } from 'src/app/services/post/posts.service';
 import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
@@ -37,7 +39,8 @@ export class ProfileUserComponent implements OnInit {
               private userService : UsersService, 
               private router: Router, 
               public authService : AuthService,
-              public postService : PostsService
+              public postService : PostsService,
+              public dialog: MatDialog
     ){
     const navigation = this.router.getCurrentNavigation();
     const state = navigation!.extras.state as {pageIndex: number, pageSize : number};
@@ -65,6 +68,14 @@ export class ProfileUserComponent implements OnInit {
         this.posts = result.body;
         this.dataSource = new MatTableDataSource(this.posts!);
       });
+  }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(CommentComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 
 }

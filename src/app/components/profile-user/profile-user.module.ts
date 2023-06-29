@@ -13,6 +13,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [ProfileUserComponent, ToolbarComponent],
@@ -26,7 +27,8 @@ import {MatCardModule} from '@angular/material/card';
     MatListModule,
     MatTableModule,
     MatFormFieldModule,
-    MatCardModule
+    MatCardModule,
+    MatBadgeModule
   ]
 })
 export class ProfileUserModule { }

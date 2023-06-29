@@ -26,8 +26,12 @@
     <mat-card-content>
       <p>{{posts![i].body}}</p>
     </mat-card-content>
-    <mat-card-actions>
-      
+    <mat-card-actions align="end">
+      <div class="actions">
+        <button mat-raised-button matBadge="7" (click)="openDialog('0ms', '0ms')">
+          Commenti
+      </button>
+      </div>
     </mat-card-actions>
   </mat-card>
 </div>
