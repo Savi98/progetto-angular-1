@@ -14,7 +14,9 @@ export class PostsService {
 
   constructor(private http:HttpClient, private authService : AuthService ) { }
 
-  getPostsUser(id : number) {
-    return this.http.get<Post[]>(`${this.postUser}/${id}/posts`);
+  getPostsUser(id : number) : Observable<HttpResponse<Post[]>> {
+    return this.http.get<Post[]>(`${this.postUser}/${id}/posts` , {
+      observe : 'response'
+    });
   }
 }

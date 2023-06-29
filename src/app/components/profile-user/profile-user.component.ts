@@ -33,8 +33,6 @@ export class ProfileUserComponent implements OnInit {
   expandedElement!: User | null;
   dataSource!: MatTableDataSource<Post>;
 
-  id = 3331828;
-
   constructor(private route: ActivatedRoute,
               private userService : UsersService, 
               private router: Router, 
@@ -64,7 +62,7 @@ export class ProfileUserComponent implements OnInit {
   loadPosts(id : number){
     this.postService.getPostsUser(id)
       .subscribe(result => {
-        this.posts = result;
+        this.posts = result.body;
         this.dataSource = new MatTableDataSource(this.posts!);
       });
   }
