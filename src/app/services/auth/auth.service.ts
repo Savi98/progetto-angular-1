@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../../models/user/user.model';
 
@@ -13,14 +12,18 @@ export class AuthService {
 
   isLoggedIn! : boolean;
 
-  constructor(private http : HttpClient) {}
+  constructor() {}
 
-  login(token : string){
+  login(token : string , email : string, name : string){
     localStorage.setItem('token',token);
+    localStorage.setItem('email',email);
+    localStorage.setItem('name',name);
   }
 
   logout(){
     localStorage.removeItem('token');
+    localStorage.removeItem('email');
+    localStorage.removeItem('name');
   }
 
   isAuthenticated(){

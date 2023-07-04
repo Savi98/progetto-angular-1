@@ -14,9 +14,12 @@ import {MatTableModule} from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import {MatBadgeModule} from '@angular/material/badge';
+import { CommentComponent } from 'src/app/comment/comment.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
-  declarations: [ProfileUserComponent, ToolbarComponent],
+  declarations: [ProfileUserComponent, ToolbarComponent, CommentComponent],
   imports: [
     CommonModule,
     ProfileUserRoutingModule,
@@ -28,7 +31,10 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatTableModule,
     MatFormFieldModule,
     MatCardModule,
-    MatBadgeModule
+    MatBadgeModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule
   ]
 })
 export class ProfileUserModule { }

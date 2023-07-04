@@ -13,7 +13,7 @@
 
 <hr>
 
-<div class="posts" >
+<div class="posts">
   <mat-card class="example-card" *ngFor="let post of posts; let i = index">
     <mat-card-header *ngIf="users | async as user">
       <div mat-card-avatar class="example-header-image">
@@ -28,9 +28,9 @@
     </mat-card-content>
     <mat-card-actions align="end">
       <div class="actions">
-        <button mat-raised-button matBadge="7" (click)="openDialog('0ms', '0ms')">
-          Commenti
-      </button>
+        <button mat-raised-button (click)="openDialog(posts![i].id)">
+          Comments
+        </button>
       </div>
     </mat-card-actions>
   </mat-card>
