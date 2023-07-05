@@ -1,1 +1,94 @@
-<p>post works!</p>
+<mat-toolbar>
+  <button mat-icon-button (click)="backHome()">
+    <mat-icon>home</mat-icon>
+  </button>
+
+  <button mat-icon-button (click)="onLogout()">
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="add-post">
+  <button mat-fab  (click)="openDialog('0ms', '0ms')">
+    <mat-icon>forum</mat-icon>
+  </button>
+</div>
+
+<div class="view-posts">
+
+    <div></div>
+
+    <div class="search-bar">
+      <mat-form-field>
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
+      </mat-form-field>
+    </div>
+
+    <div></div>
+
+</div>
+
+    <div class="table-container mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
+
+        <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
+          <th mat-header-cell *matHeaderCellDef> {{column | titlecase}} </th>
+          <td mat-cell *matCellDef="let post">{{post[column]}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="expand">
+          <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+              <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
+              <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="expandedDetail">
+          <td mat-cell *matCellDef="let post" [attr.colspan]="columnsToDisplayWithExpand.length">
+            <div class="example-element-detail"
+                [@detailExpand]="post == expandedElement ? 'expanded' : 'collapsed'">
+              <div class="example-element-diagram">
+                <div class="example-element-position"> {{post.body}} </div>
+
+                <mat-card *ngIf="post.comments?.length! > 0 else noComments">
+                  <mat-card-header *ngFor="let comment of post.comments">
+                    <mat-card-title>{{comment.name}}</mat-card-title>
+                    <mat-card-subtitle>{{comment.body}}</mat-card-subtitle>
+                  </mat-card-header>
+                </mat-card>
+                <ng-template #noComments>
+                  <mat-card >
+                    <mat-card-header>
+                      <mat-card-title>No comments</mat-card-title>
+                    </mat-card-header>
+                  </mat-card>
+                </ng-template>
+
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand ; sticky: true"></tr>
+        <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
+            class="example-element-row"
+            [class.example-expanded-row]="expandedElement === element"
+            (click)="expandedElement = expandedElement === element ? null : element">
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+
+      </table>
+    </div>
+
+  <mat-paginator
+                [length]="length"
+                [pageIndex]="pageIndex"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="pageSizeOptions"
+                (page)="onPageChange($event)">
+  </mat-paginator>

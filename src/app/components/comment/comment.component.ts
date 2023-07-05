@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { CommentService } from '../services/comment/comment.service';
+import { CommentService } from '../../services/comment/comment.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Comment, NewComment } from 'src/app/models/comment/comment.model';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -33,15 +33,17 @@ export class CommentComponent {
     this.commentService.getCommentUser(id)
     .subscribe(result => {
       this.comments = result.body;
-      console.log(this.comments);
     })
   }
 
   addComment(postId : number){
+    let userData = JSON.parse(localStorage.getItem('user')!);
+    let userName = userData.user.name;
+    let userEmail = userData.user.email;
     const comment : NewComment =
       {
-        name : localStorage.getItem('name'),
-        email: localStorage.getItem('email'),
+        name : userName,
+        email: userEmail,
         body: this.newCommentForm.value.body,
       };
     this.commentService.newComment(comment, postId).subscribe({

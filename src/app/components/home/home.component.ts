@@ -11,6 +11,10 @@ export class HomeComponent {
 
   constructor(public router:Router, public authService : AuthService){}
 
+  posts(){
+    this.router.navigate(['/posts']);
+  }
+
   onLogout(){
     this.authService.logout();
     this.router.navigate(['/login']);

@@ -35,7 +35,8 @@ export class AddUserComponent {
     this.userService.newUser(user).subscribe({
       next : (res) => {
         window.alert("User added!");
-        this.dialogRef.close([]);
+        this.dialogRef.close();
+        this.userService.getUsers;
       },
       error : (err) => {
         if (err.status == 422) {

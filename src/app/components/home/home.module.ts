@@ -18,6 +18,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { UsersService } from 'src/app/services/users/users.service';
+import { AddUserComponent } from '../add-user/add-user.component';
 
 
 @NgModule({

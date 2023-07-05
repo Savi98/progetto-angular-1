@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
-import { CommentComponent } from 'src/app/comment/comment.component';
+import { CommentComponent } from 'src/app/components/comment/comment.component';
 import { Post } from 'src/app/models/post/post.model';
 import { User } from 'src/app/models/user/user.model';
 import { AuthService } from 'src/app/services/auth/auth.service';

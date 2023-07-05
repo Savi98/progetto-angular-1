@@ -1,0 +1,160 @@
+.mat-toolbar-single-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 10%;
+  place-items: center;
+}
+
+/* .mat-icon , .mat-card-avatar{
+  font-size: 35px;
+  height: 35px ;
+  width: 35px;
+} */
+
+.add-post {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.add-post > button {
+  background-color: black;
+}
+
+.view-posts {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 30px;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+.remove {
+  border: solid;
+}
+
+mat-paginator {
+  position: fixed;
+  bottom: 0;
+  width: -webkit-fill-available;
+  border: solid;
+}
+
+.mat-mdc-paginator-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 8px;
+  flex-wrap: wrap-reverse;
+  width: 100%;
+}
+
+/* TABLE */
+
+.table-container {
+  height: 350px;
+  width: 90%;
+  margin: auto;
+  overflow: auto;
+}
+
+@media (max-width: 300px) and (max-height: 750px) {
+  .table-container {
+    height: 300px;
+    width: 100%;
+  }
+}
+
+@media (min-width: 301px) and (max-width: 950px) and (max-height: 750px) {
+  .table-container {
+    height: 300px;
+  }
+}
+
+@media (min-width: 301px) and (max-width: 950px) and (min-height: 751px) and (max-height: 950px) {
+  .table-container {
+    height: 500px;
+  }
+}
+
+@media (min-width: 301px) and (max-width: 950px) and (min-height: 751px) and (max-height: 1100px) {
+  .table-container {
+    height: 500px;
+  }
+}
+
+@media (min-width: 301px) and (max-width: 950px) and (min-height: 1101px) {
+  .table-container {
+    height: 800px;
+  }
+}
+
+@media (min-width: 951px) and (min-height: 600px) and (max-height: 699px) {
+  .table-container {
+    height: 250px;
+  }
+}
+
+@media (min-width: 951px) and (min-height: 1102px) {
+  .table-container {
+    height: 800px;
+  }
+}
+
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+.example-element-diagram {
+  height: auto;
+}

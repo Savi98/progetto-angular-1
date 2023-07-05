@@ -1,43 +1,7 @@
 .mat-toolbar-single-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-
+  grid-template-columns: 1fr 1fr;
+  height: 10%;
+  place-items: center;
 }
 
-@media (max-width: 500px) {
-  .mat-toolbar-single-row {
-    grid-template-columns: 1fr 1fr 0.2fr;
-    place-items: center;
-  }
-}
-
-.title {
-  font-size: 20px;
-}
-
-@media (max-width: 500px) {
-  .title {
-    font-size: 15px;
-  }
-}
-
-.user {
-  text-align: center;
-}
-
-@media (max-width: 500px) {
-  .user {
-    font-size: 15px;
-  }
-}
-
-.exit {
-  grid-column: -1;
-  grid-row: -2;
-}
-
-@media (max-width: 500px) {
-  .exit {
-    font-size: 15px;
-  }
-}

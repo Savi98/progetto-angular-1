@@ -14,20 +14,21 @@ export class AuthService {
 
   constructor() {}
 
-  login(token : string , email : string, name : string){
-    localStorage.setItem('token',token);
-    localStorage.setItem('email',email);
-    localStorage.setItem('name',name);
+  login(user : User){
+    localStorage.setItem('user',JSON.stringify({user}));
+  }
+
+  setToken(token : string){
+    localStorage.setItem('token', token);
   }
 
   logout(){
+    localStorage.removeItem('user');
     localStorage.removeItem('token');
-    localStorage.removeItem('email');
-    localStorage.removeItem('name');
   }
 
   isAuthenticated(){
-    if (localStorage.getItem('token') === null) {
+    if (localStorage.getItem('user') === null) {
       this.isLoggedIn = false;
     } else {
       this.isLoggedIn = true;

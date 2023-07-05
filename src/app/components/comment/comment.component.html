@@ -1,4 +1,4 @@
-<mat-card class="mat-card" *ngIf="comments!.length > 0; else noComments">
+<mat-card class="mat-card" *ngIf="comments?.length! > 0; else noComments">
   <h1>Comments</h1>
   <mat-card-header *ngFor="let comment of comments; let i = index">
     <mat-card-title>{{comments![i].name}}</mat-card-title>

@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit{
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      name: new FormControl(),
       email: new FormControl('',[Validators.email]),
       token: new FormControl('',[Validators.minLength(64)]),
     });
@@ -32,21 +31,21 @@ export class LoginComponent implements OnInit{
       Authorization: `Bearer ${this.loginForm.value.token}`
     });
 
-    const name = this.loginForm.value.name;
     const email = this.loginForm.value.email;
     const token = this.loginForm.value.token;
     this.http.get<User[]>(`${this.authService.usersUlr}`,{headers})
     .subscribe({
       next : (res)=> {
         const user = res.find((a:any)=>{
-        return a.email === email && a.name == name;
+        return a.email === email;
       });
         if(user){
           alert('Login Succesful');
-          this.authService.login(token, email, name);
+          this.authService.login(user);
+          this.authService.setToken(token);
           this.loginForm.reset();
           this.loginValid = true;
-          this.router.navigate(["home"])
+          this.router.navigate(["home"]);
         }
     },
       error : (err) => {

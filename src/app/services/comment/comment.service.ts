@@ -9,6 +9,7 @@ import { Comment, NewComment } from '../../models/comment/comment.model';
 export class CommentService {
 
   commentUser = 'https://gorest.co.in/public/v2/posts/';
+  allComment = 'https://gorest.co.in/public/v2/comments';
 
   constructor(private http:HttpClient) { }
 
@@ -16,6 +17,15 @@ export class CommentService {
     return this.http.get<Comment[]>(`${this.commentUser}/${id}/comments` , {
       observe : 'response'
     });
+  }
+
+  getCommentUsers(id : number) : Observable<Comment[]> {
+    return this.http.get<Comment[]>(`${this.commentUser}/${id}/comments`);
+  }
+
+  getAllComments(pageIndex: number, pageSize: number) {
+    const startIndex = pageIndex * pageSize;
+    return this.http.get<Comment[]>(`${this.allComment}?page=${startIndex}&per_page=${pageSize}`)
   }
 
   newComment(comment: NewComment, postId : number): Observable<NewComment> {

@@ -1,13 +1,12 @@
 <mat-toolbar>
 
-  <span class="title">Improve your Life</span>
-
-  <span class="user"></span>
-
-  <button mat-icon-button class="exit" (click)="onLogout()">
-    <mat-icon>exit_to_app</mat-icon>
+  <button mat-icon-button (click)="posts()">
+    <mat-icon>forum</mat-icon>
   </button>
 
+  <button mat-icon-button (click)="onLogout()">
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
 </mat-toolbar>
 
 <app-users></app-users>
